@@ -146,4 +146,6 @@ export default class HomePage {
         const bankAccount = this.page.getByRole('listitem').filter({ hasText: accountName });
         await bankAccount.waitFor({ state: 'visible', timeout });
     }
-} 
+
+}
+
