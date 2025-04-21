@@ -7,6 +7,11 @@ export default class LoginPage {
         this.page = page;
     }
 
+    // Public method to get the page object for assertions
+    getPage(): Page {
+        return this.page;
+    }
+
     // Selectors
     private usernameInput = '#username';
     private passwordInput = '#password';

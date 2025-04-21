@@ -1,10 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from './TestBase';
 import LoginPage from '../pages/LoginPage';
 
 test.describe('Login Tests', () => {
-  test('should login successfully with valid credentials', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-
+  test('should login successfully with valid credentials', async ({ loginPage }) => {
     // Navigate to the login page
     await loginPage.navigateToLoginPage();
 
@@ -15,12 +13,10 @@ test.describe('Login Tests', () => {
 
     // Assert successful login (example: check for a specific element after login)
     // await expect(page).toHaveURL('/dashboard'); // Replace '/dashboard' with the actual post-login URL
-    await expect(page.locator('text=@Test1')).toBeVisible(); // Replace 'Welcome' with an actual element/text visible after login
+    await expect(loginPage.getPage().locator('text=@Test1')).toBeVisible(); // Replace 'Welcome' with an actual element/text visible after login
   });
 
-  test('should fail to login with invalid credentials', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-
+  test('should fail to login with invalid credentials', async ({ loginPage }) => {
     // Navigate to the login page
     await loginPage.navigateToLoginPage();
 
@@ -30,6 +26,6 @@ test.describe('Login Tests', () => {
     await loginPage.login(invalidUsername, invalidPassword);
 
     // Assert login failure (example: check for an error message)
-    await expect(page.locator('text=Invalid username or password')).toBeVisible(); // Replace with the actual error message
+    await expect(loginPage.getPage().locator('text=Invalid username or password')).toBeVisible(); // Replace with the actual error message
   });
 });
